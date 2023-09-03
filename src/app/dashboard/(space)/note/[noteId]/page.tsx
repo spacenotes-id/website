@@ -36,7 +36,7 @@ export default function NoteIdPage(props: PageProps) {
         </div>
       </Paper>
 
-      <Paper className='p-4 mt-3 space-y-4 min-h-[calc(100vh-14rem)] rounded'>
+      <Paper className='p-4 mt-3 space-y-4 min-h-[calc(100vh-11rem)] rounded'>
         <p>{note.body}</p>
       </Paper>
     </>

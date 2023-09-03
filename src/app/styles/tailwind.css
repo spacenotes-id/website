@@ -24,4 +24,8 @@
     background-color: var(--thumbBG);
     border-color: var(--scrollbarBG);
   }
+
+  .gradient-text {
+    background: linear-gradient(90deg, #ea580c, #8b5cf6, #2563eb) 0 0 / 400% 100%;
+  }
 }

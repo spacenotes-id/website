@@ -20,7 +20,7 @@ export function Breadcrumb() {
   })
 
   return (
-    <nav className='inline-flex items-center'>
+    <nav className='inline-flex items-center -ml-1'>
       {items.map((item) => {
         if (item.isLastElement)
           return (

@@ -15,6 +15,16 @@ const config: Config = {
       fontFamily: {
         primary: [`var(--font-plus-jakarta-sans)`, ...fontFamily.sans],
       },
+      keyframes: {
+        flow: {
+          to: {
+            'background-position': '400% 0',
+          },
+        },
+      },
+      animation: {
+        'text-flow': 'flow 8s infinite linear',
+      },
     },
   },
   plugins: [],
