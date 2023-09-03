@@ -24,14 +24,14 @@ export function Breadcrumb() {
       {items.map((item) => {
         if (item.isLastElement)
           return (
-            <span className='text-sm font-medium' key={item.href}>
+            <span className='text-sm font-medium py-0.5 px-1' key={item.href}>
               {item.name}
             </span>
           )
         return (
           <span key={item.href} className='inline-flex items-center mr-1.5'>
             <Link
-              className='text-sm font-medium motion-safe:transition motion-safe:hover:bg-primary-300'
+              className='text-sm font-medium rounded py-0.5 px-1 motion-safe:transition motion-safe:hover:bg-primary-100'
               href={item.href}
             >
               <span>{item.name}</span>
