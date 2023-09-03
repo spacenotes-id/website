@@ -23,14 +23,14 @@ export function SidebarSpaceListItem(props: SpaceWithNotes) {
               variants='ghost'
               className='w-full py-2 px-3 border-transparent'
             >
-              <span className='truncate pr-1'>{props.name}</span>
+              <span className='truncate pr-1 ml-1'>{props.name}</span>
               <ChevronDownIcon
                 className={tw('ml-auto shrink-0 motion-safe:transition', open && 'rotate-180')}
                 size='1em'
               />
             </Disclosure.Button>
 
-            <Disclosure.Panel as='div' className='flex flex-col space-y-2 px-2 py-1.5'>
+            <Disclosure.Panel as='div' className='flex flex-col space-y-2 px-2 pt-1.5 pb-3'>
               {props.notes.map((note) => {
                 return <SidebarSpaceListItemNote key={note.id} {...note} />
               })}

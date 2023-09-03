@@ -1,34 +1,36 @@
-import { getNoteList } from './note'
 import type { Note } from './note'
+import { generateNotes } from './note'
 
-import { nanoid } from 'nanoid'
-import { cache } from 'react'
-
-export type Space = {
-  id: string
+export type SpaceWithNotes = {
+  id: number
   name: string
+  notes: Note[]
+  isFavorite: boolean
 }
-export type SpaceWithNotes = Space & { notes: Note[] }
+export const spaces: SpaceWithNotes[] = [
+  { id: 1, name: 'Blog Posts', isFavorite: true, notes: generateNotes(2, 'blogposts') },
+  { id: 2, name: 'College', isFavorite: false, notes: generateNotes(4, 'collegestuff') },
+  { id: 3, name: 'High School', isFavorite: false, notes: generateNotes(7, 'highscool') },
+  {
+    id: 4,
+    name: 'Adventure Of My Life Vol.3',
+    isFavorite: true,
+    notes: generateNotes(2, 'adv-life-vol3'),
+  },
+  {
+    id: 5,
+    name: 'Adventure Of My Life Vol.2',
+    isFavorite: true,
+    notes: generateNotes(10, 'adv-life-vol2'),
+  },
+  {
+    id: 6,
+    name: 'Adventure Of My Life Vol.1',
+    isFavorite: true,
+    notes: generateNotes(10, 'adv-life-vol1'),
+  },
+]
 
-const getSpaces = cache(
-  () =>
-    [
-      { id: nanoid(), name: 'Blog Posts' },
-      { id: nanoid(), name: 'Hanna, The girl I love' },
-      { id: nanoid(), name: 'More College Stuff' },
-      { id: nanoid(), name: 'High School Stuff' },
-      { id: nanoid(), name: 'Adventure of my live, vol.4' },
-      { id: nanoid(), name: 'Adventure of my live, vol.3' },
-      { id: nanoid(), name: 'Adventure of my live, vol.2' },
-      { id: nanoid(), name: 'Adventure of my live, vol.1' },
-      { id: nanoid(), name: 'Night time thought' },
-      { id: nanoid(), name: 'Random Thoughts' },
-      { id: nanoid(), name: 'Gym Bros Advice' },
-      { id: nanoid(), name: 'Muscle Wiki I should write' },
-      { id: nanoid(), name: 'All About today I learned' },
-    ] as Space[],
-)
+export const favSpaces = spaces.filter((space) => space.isFavorite)
 
-export const getSpaceList = cache(() =>
-  getSpaces().map((item) => ({ ...item, notes: getNoteList() })),
-)
+export const allNotes = spaces.map((item) => item.notes).flat()

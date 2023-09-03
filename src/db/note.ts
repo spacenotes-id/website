@@ -1,15 +1,15 @@
-import { nanoid } from 'nanoid'
-import { cache } from 'react'
+export type Note = { id: string; name: string; body: string }
 
-export type Note = { id: string; name: string }
+export function generateNotes(max: number, prefix: string | number) {
+  const array = new Array(max)
+  for (let i = 0; i < max; i++) {
+    const note = {
+      id: `${prefix}-${i}`,
+      name: `Note number ${i} from ${prefix}`,
+      body: 'lorem ipsum dolor sit amet adpisicing elit',
+    }
+    array[i] = note
+  }
 
-export const getNoteList = cache(() => {
-  return [
-    { id: nanoid(), name: 'Note number 1' },
-    { id: nanoid(), name: 'Note number 2' },
-    { id: nanoid(), name: 'Note number 3' },
-    { id: nanoid(), name: 'Note number 4' },
-    { id: nanoid(), name: 'Note number 5' },
-    { id: nanoid(), name: 'Note number 6' },
-  ] as Note[]
-})
+  return array as Note[]
+}

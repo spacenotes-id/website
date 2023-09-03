@@ -12,7 +12,7 @@ export function SidebarSpaceListHeader() {
   const addButton = match(pathname)
     .with(P.string.endsWith('/space'), () => null)
     .otherwise(() => (
-      <Button variants='ghost' className='p-0.5 ml-auto'>
+      <Button variants='ghost' interactive='yes' className='p-0.5 ml-auto'>
         <PlusIcon size='1em' />
         <span className='sr-only'>Create space</span>
       </Button>

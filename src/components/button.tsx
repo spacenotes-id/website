@@ -73,7 +73,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           button({
             variants,
             interactive,
-            className: twMerge(props.className, icon && 'inline-flex items-center space-x-1'),
+            className: twMerge(props.className, icon && 'inline-flex items-center'),
           }),
         ),
       },

@@ -17,7 +17,7 @@ export function SidebarSpaceListItemNote(props: Note) {
       variants='unstyled'
       className='py-1 px-2 text-base-600 hover:bg-base-100'
     >
-      <span>{props.name}</span>
+      <span className='ml-1 truncate'>{props.name}</span>
     </Button>
   )
 }
