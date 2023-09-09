@@ -1,12 +1,16 @@
 import { Button } from '@/components/button'
+import type { TBreadcrumb } from '@/components/header/breadcrumb'
 import { Paper } from '@/components/paper'
 import { Title } from '@/components/title'
+import { withBreadcrumb } from '@/components/with-breadcrumb'
 
 import { allNotes, favSpaces, spaces } from '@/db/space'
 
 import { HeartIcon, OrbitIcon, PencilIcon, StickyNoteIcon, Trash2Icon } from 'lucide-react'
 
-export default function SpacePage() {
+const items: TBreadcrumb[] = [{ label: 'Space', path: '/dashboard/space' }]
+
+function SpacePage() {
   return (
     <>
       <Title>Manage Your Space</Title>
@@ -71,3 +75,5 @@ export default function SpacePage() {
     </>
   )
 }
+
+export default withBreadcrumb(SpacePage, items)

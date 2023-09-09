@@ -1,5 +1,6 @@
 import { Button } from '@/components/button'
 import { Paper } from '@/components/paper'
+import { withBreadcrumb } from '@/components/with-breadcrumb'
 
 import { allNotes } from '@/db/space'
 
@@ -11,7 +12,8 @@ type PageProps = {
     noteId?: string
   }
 }
-export default function NoteIdPage(props: PageProps) {
+
+function NoteDetailPage(props: PageProps) {
   const note = allNotes.find((note) => note.id === props.params.noteId)
 
   if (!note) {
@@ -42,3 +44,11 @@ export default function NoteIdPage(props: PageProps) {
     </>
   )
 }
+
+export default withBreadcrumb(NoteDetailPage, (props) => {
+  const note = allNotes.find((note) => note.id === props.params.noteId)
+  const base = { label: 'Note', path: '/dashboard/note' }
+
+  if (!note) return [base]
+  return [base, { label: note.name, path: `${base.path}/${note.id}` }]
+})

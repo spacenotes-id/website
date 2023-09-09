@@ -1,46 +1,43 @@
-'use client'
-
+import { LayoutDashboardIcon, ChevronRightIcon } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
-export function Breadcrumb() {
-  const pathname = usePathname()
+export type TBreadcrumb = { label: string; path: string }
 
-  const segments = pathname.split('/').filter((segment) => segment !== '') // Split and remove empty segments
+type TProps = {
+  items?: Array<TBreadcrumb>
+}
 
-  const items = segments.map((segment, index) => {
-    const path = '/' + segments.slice(0, index + 1).join('/') // Build the path for each breadcrumb
-    const name = segment.charAt(0).toUpperCase() + segment.slice(1) // Capitalize the name
-
-    return {
-      href: path,
-      name: name,
-      isLastElement: index === segments.length - 1,
-    }
-  })
+export function Breadcrumb(props: TProps) {
+  const { items = [] } = props
 
   return (
-    <nav className='inline-flex items-center -ml-1'>
-      {items.map((item) => {
-        if (item.isLastElement)
+    <div className='flex items-center'>
+      <LayoutDashboardIcon size='1em' className='mr-0.5' />
+
+      <nav className='inline-flex items-center'>
+        {items.map((item, index, self) => {
+          const lastElement = index === self.length - 1
+
+          if (lastElement)
+            return (
+              <span className='text-sm font-medium py-0.5 px-1' key={item.path}>
+                {item.label}
+              </span>
+            )
           return (
-            <span className='text-sm font-medium py-0.5 px-1' key={item.href}>
-              {item.name}
+            <span key={item.path} className='inline-flex items-center'>
+              <Link
+                className='text-sm font-medium rounded py-0.5 px-1 motion-safe:transition motion-safe:hover:bg-primary-100'
+                href={item.path}
+              >
+                <span>{item.label}</span>
+              </Link>
+
+              <ChevronRightIcon size='0.95em' />
             </span>
           )
-        return (
-          <span key={item.href} className='inline-flex items-center mr-1.5'>
-            <Link
-              className='text-sm font-medium rounded py-0.5 px-1 motion-safe:transition motion-safe:hover:bg-primary-100'
-              href={item.href}
-            >
-              <span>{item.name}</span>
-            </Link>
-
-            <span className='ml-1'>/</span>
-          </span>
-        )
-      })}
-    </nav>
+        })}
+      </nav>
+    </div>
   )
 }
