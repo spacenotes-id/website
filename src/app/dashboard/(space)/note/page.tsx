@@ -11,8 +11,8 @@ import Link from 'next/link'
 
 function NotePage() {
   return (
-    <>
-      <Title>Your Notes</Title>
+    <Paper className='py-2 px-3.5 rounded min-h-[calc(100vh-9.25rem)]'>
+      <Title>Overview</Title>
 
       <div className='grid gap-3 grid-cols-[repeat(auto-fit,minmax(min(100%,8rem),1fr))]'>
         <Paper className='p-4 rounded col-span-2'>
@@ -78,7 +78,7 @@ function NotePage() {
           })}
         </div>
       </div>
-    </>
+    </Paper>
   )
 }
 

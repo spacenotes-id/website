@@ -12,8 +12,8 @@ const items: TBreadcrumb[] = [{ label: 'Space', path: '/dashboard/space' }]
 
 function SpacePage() {
   return (
-    <>
-      <Title>Manage Your Space</Title>
+    <Paper className='py-2 px-3.5 rounded min-h-[calc(100vh-9.25rem)]'>
+      <Title>Overview</Title>
 
       <div className='grid gap-3 grid-cols-[repeat(auto-fit,minmax(min(100%,8rem),1fr))]'>
         <Paper className='p-4 rounded'>
@@ -72,7 +72,7 @@ function SpacePage() {
           })}
         </div>
       </div>
-    </>
+    </Paper>
   )
 }
 
