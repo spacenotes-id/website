@@ -4,7 +4,9 @@ import { withBreadcrumb } from '@/components/with-breadcrumb'
 
 import { allNotes } from '@/db/space'
 
+import htmr from 'htmr'
 import { ArchiveIcon, HeartIcon, Trash2Icon } from 'lucide-react'
+import { marked } from 'marked'
 import { notFound } from 'next/navigation'
 
 type PageProps = {
@@ -13,12 +15,14 @@ type PageProps = {
   }
 }
 
-function NoteDetailPage(props: PageProps) {
+async function NoteDetailPage(props: PageProps) {
   const note = allNotes.find((note) => note.id === props.params.noteId)
 
   if (!note) {
     notFound()
   }
+
+  const content = await marked.parse(note.body, { async: true })
 
   return (
     <>
@@ -38,8 +42,8 @@ function NoteDetailPage(props: PageProps) {
         </div>
       </Paper>
 
-      <Paper className='p-4 mt-3 space-y-4 min-h-[calc(100vh-11rem)] rounded'>
-        <p>{note.body}</p>
+      <Paper className='p-4 mt-3 space-y-4 min-h-[calc(100vh-11rem)] rounded prose prose-sm lg:prose-base prose-gray max-w-none'>
+        {htmr(content)}
       </Paper>
     </>
   )
