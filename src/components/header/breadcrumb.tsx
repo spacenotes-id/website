@@ -1,3 +1,5 @@
+import { tw } from '@/libs/common'
+
 import { LayoutDashboardIcon, ChevronRightIcon } from 'lucide-react'
 import Link from 'next/link'
 
@@ -11,33 +13,37 @@ export function Breadcrumb(props: TProps) {
   const { items = [] } = props
 
   return (
-    <div className='flex items-center'>
-      <LayoutDashboardIcon size='1em' className='mr-0.5' />
+    <nav className='flex items-center flex-wrap'>
+      {items.map((item, index, self) => {
+        const lastElement = index === self.length - 1
 
-      <nav className='inline-flex items-center'>
-        {items.map((item, index, self) => {
-          const lastElement = index === self.length - 1
-
-          if (lastElement)
-            return (
-              <span className='text-sm font-medium py-0.5 px-1' key={item.path}>
-                {item.label}
-              </span>
-            )
+        if (lastElement)
           return (
-            <span key={item.path} className='inline-flex items-center'>
-              <Link
-                className='text-sm font-medium rounded py-0.5 px-1 motion-safe:transition motion-safe:hover:bg-primary-100'
-                href={item.path}
-              >
-                <span>{item.label}</span>
-              </Link>
-
-              <ChevronRightIcon size='0.95em' />
+            <span className='inline-flex items-center py-0.5' key={item.path}>
+              <ChevronRightIcon className='shrink-0' size='0.95em' />
+              <span className='text-xs sm:text-sm font-medium'>{item.label}</span>
             </span>
           )
-        })}
-      </nav>
-    </div>
+
+        return (
+          <span key={item.path} className='inline-flex items-center'>
+            {index !== 0 && <ChevronRightIcon className='shrink-0' size='0.95em' />}
+            <Link
+              className={tw(
+                'inline-flex items-center',
+                'text-xs sm:text-sm font-medium',
+                'rounded py-0.5 px-1',
+                'motion-safe:transition',
+                'motion-safe:hover:bg-primary-100',
+              )}
+              href={item.path}
+            >
+              {index === 0 && <LayoutDashboardIcon size='0.95em' className='mr-1 shrink-0' />}
+              <span className='shrink-0'>{item.label}</span>
+            </Link>
+          </span>
+        )
+      })}
+    </nav>
   )
 }

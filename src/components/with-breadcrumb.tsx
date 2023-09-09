@@ -16,7 +16,7 @@ export function withBreadcrumb<TProps>(
 
     return (
       <>
-        <Paper as='header' className='py-2 px-3.5 mb-4 rounded'>
+        <Paper as='header' className='py-1.5 px-2 sm:py-2.5 sm:px-3.5 mb-3 rounded'>
           <Breadcrumb items={[base, ...breadcrumbs]} />
         </Paper>
         <Component {...props} />
