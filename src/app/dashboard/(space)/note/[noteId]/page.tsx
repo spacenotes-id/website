@@ -1,7 +1,9 @@
+import type { TBreadcrumb } from '@/components/breadcrumb'
+import { Breadcrumb } from '@/components/breadcrumb'
 import { Button } from '@/components/button'
 import { Paper } from '@/components/paper'
-import { withBreadcrumb } from '@/components/with-breadcrumb'
 
+import type { Note } from '@/db/note'
 import { allNotes } from '@/db/space'
 
 import htmr from 'htmr'
@@ -9,23 +11,38 @@ import { ArchiveIcon, HeartIcon, Trash2Icon } from 'lucide-react'
 import { marked } from 'marked'
 import { notFound } from 'next/navigation'
 
+const getNote = (noteId?: string) => {
+  return new Promise<Note | null>((resolve) =>
+    setTimeout(() => {
+      const note = allNotes.find((note) => note.id === noteId)
+      resolve(note ?? null)
+    }, 800),
+  )
+}
+
 type PageProps = {
   params: {
     noteId?: string
   }
 }
 
-async function NoteDetailPage(props: PageProps) {
-  const note = allNotes.find((note) => note.id === props.params.noteId)
+export default async function NoteDetailPage(props: PageProps) {
+  const note = await getNote(props.params.noteId)
 
   if (!note) {
     notFound()
   }
 
   const content = await marked.parse(note.body, { async: true })
+  const breadcrumb: TBreadcrumb[] = [
+    { label: 'Note', path: '/dashboard/note' },
+    { label: note.name, path: note.id },
+  ]
 
   return (
     <>
+      <Breadcrumb items={breadcrumb} />
+
       <Paper className='sticky top-[4.5rem] flex items-center px-3 py-4 rounded backdrop-blur-md'>
         <p className='font-bold text-lg lg:text-xl truncate pb-1 mr-4'>{note.name}</p>
 
@@ -48,11 +65,3 @@ async function NoteDetailPage(props: PageProps) {
     </>
   )
 }
-
-export default withBreadcrumb(NoteDetailPage, (props) => {
-  const note = allNotes.find((note) => note.id === props.params.noteId)
-  const base = { label: 'Note', path: '/dashboard/note' }
-
-  if (!note) return [base]
-  return [base, { label: note.name, path: `${base.path}/${note.id}` }]
-})
