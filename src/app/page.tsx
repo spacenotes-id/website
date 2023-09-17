@@ -14,10 +14,10 @@ export default function Home() {
         Welcome to SpaceNotes
       </h1>
       <Button
+        interactive
         onClick={() => router.push('/dashboard')}
         icon={LayoutDashboardIcon}
         variants='primary'
-        interactive='yes'
         className='py-2 px-4'
       >
         <span className='ml-2 font-bold'>Go to dashboard</span>

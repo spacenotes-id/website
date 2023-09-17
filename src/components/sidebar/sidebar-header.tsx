@@ -12,7 +12,7 @@ export function SidebarSpaceListHeader() {
   const addButton = match(pathname)
     .with(P.string.endsWith('/space'), () => null)
     .otherwise(() => (
-      <Button variants='ghost' interactive='yes' className='p-0.5 ml-auto'>
+      <Button variants='ghost' interactive className='p-0.5 ml-auto'>
         <PlusIcon size='1em' />
         <span className='sr-only'>Create space</span>
       </Button>
@@ -20,7 +20,7 @@ export function SidebarSpaceListHeader() {
 
   return (
     <div className='flex items-center px-4'>
-      <p className='font-medium text-sm'>Your Spaces</p>
+      <p className='font-medium text-sm'>Latest Spaces</p>
 
       {addButton}
     </div>

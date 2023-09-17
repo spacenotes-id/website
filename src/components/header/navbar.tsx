@@ -10,7 +10,7 @@ const items = [
 
 export function Navbar() {
   return (
-    <nav className='flex items-center ml-auto space-x-1'>
+    <nav className='flex items-center sm:ml-auto space-x-1'>
       {items.map((item) => {
         return (
           <Link
