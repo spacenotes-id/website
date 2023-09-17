@@ -12,16 +12,17 @@ const button = cva(['text-sm font-medium rounded border'], {
       primary: ['border-transparent', 'bg-primary-200 text-black'],
       ghost: ['bg-base-50 text-base-600'],
       danger: ['border-transparent', 'bg-red-100 text-red-900'],
+      black: ['bg-base-700 text-white'],
     },
     interactive: {
-      yes: '',
-      no: '',
+      true: '',
+      false: '',
     },
   },
   compoundVariants: [
     {
       variants: 'primary',
-      interactive: 'yes',
+      interactive: true,
       className: [
         'motion-safe:transition',
         'motion-safe:hover:bg-primary-300',
@@ -30,7 +31,7 @@ const button = cva(['text-sm font-medium rounded border'], {
     },
     {
       variants: 'ghost',
-      interactive: 'yes',
+      interactive: true,
       className: [
         'motion-safe:transition',
         'motion-safe:hover:bg-base-100',
@@ -39,7 +40,7 @@ const button = cva(['text-sm font-medium rounded border'], {
     },
     {
       variants: 'danger',
-      interactive: 'yes',
+      interactive: true,
       className: [
         'motion-safe:transition',
         'motion-safe:hover:bg-red-200',

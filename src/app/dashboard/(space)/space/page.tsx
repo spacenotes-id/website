@@ -55,7 +55,7 @@ export default function SpacePage() {
                   <div className='flex items-center space-x-2 mt-auto ml-auto'>
                     <Button
                       icon={PencilIcon}
-                      interactive='yes'
+                      interactive
                       variants='ghost'
                       className='py-1 px-2 text-xs'
                     >
@@ -63,7 +63,7 @@ export default function SpacePage() {
                     </Button>
                     <Button
                       icon={Trash2Icon}
-                      interactive='yes'
+                      interactive
                       variants='danger'
                       className='py-1 px-3 text-xs'
                     >

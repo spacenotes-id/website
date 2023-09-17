@@ -8,8 +8,8 @@
   }
 
   .custom-scrollbar {
-    --scrollbarBG: #cfd8dc;
-    --thumbBG: #90a4ae;
+    --scrollbarBG: rgb(255, 247, 213);
+    --thumbBG: rgb(232, 161, 103);
     scrollbar-width: thin;
     scrollbar-color: var(--thumbBG) var(--scrollbarBG);
   }

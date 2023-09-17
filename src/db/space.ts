@@ -7,6 +7,13 @@ export type SpaceWithNotes = {
   notes: Note[]
   isFavorite: boolean
 }
+
+export type Space = {
+  id: number
+  name: string
+  isFavorite: boolean
+}
+
 export const spaces: SpaceWithNotes[] = [
   { id: 1, name: 'Blog Posts', isFavorite: true, notes: generateNotes(2, 'blogposts') },
   { id: 2, name: 'College', isFavorite: false, notes: generateNotes(4, 'collegestuff') },
@@ -31,6 +38,8 @@ export const spaces: SpaceWithNotes[] = [
   },
 ]
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const latestSpaces = spaces.slice(0, 3).map<Space>(({ notes: _, ...rest }) => rest)
 export const favSpaces = spaces.filter((space) => space.isFavorite)
 
 export const allNotes = spaces.map((item) => item.notes).flat()

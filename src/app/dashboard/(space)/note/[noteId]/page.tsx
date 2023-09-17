@@ -47,13 +47,13 @@ export default async function NoteDetailPage(props: PageProps) {
         <p className='font-bold text-lg lg:text-xl truncate pb-1 mr-4'>{note.name}</p>
 
         <div className='flex items-center space-x-2 ml-auto'>
-          <Button className='p-1.5 text-base' variants='ghost' interactive='yes' icon={HeartIcon}>
+          <Button className='p-1.5 text-base' variants='ghost' interactive icon={HeartIcon}>
             <span className='sr-only'>Favorite</span>
           </Button>
-          <Button className='p-1.5 text-base' variants='ghost' interactive='yes' icon={ArchiveIcon}>
+          <Button className='p-1.5 text-base' variants='ghost' interactive icon={ArchiveIcon}>
             <span className='sr-only'>Archive</span>
           </Button>
-          <Button className='p-1.5 text-base' variants='danger' interactive='yes' icon={Trash2Icon}>
+          <Button className='p-1.5 text-base' variants='danger' interactive icon={Trash2Icon}>
             <span className='sr-only'>Delete</span>
           </Button>
         </div>

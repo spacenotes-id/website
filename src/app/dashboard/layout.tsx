@@ -1,3 +1,4 @@
+import { AppDrawer } from '@/components/app-drawer'
 import { Header } from '@/components/header'
 import { Sidebar } from '@/components/sidebar'
 
@@ -13,6 +14,8 @@ export default function DashboardLayout(props: React.PropsWithChildren) {
       <div className='sm:pl-52 md:pl-60 xl:pl-72 pt-14'>
         <div className='mx-auto w-11/12 py-4'>{props.children}</div>
       </div>
+
+      <AppDrawer />
     </Fragment>
   )
 }

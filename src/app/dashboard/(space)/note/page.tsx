@@ -72,7 +72,7 @@ export default function NotePage() {
                     </Link>
                     <Button
                       icon={PencilIcon}
-                      interactive='yes'
+                      interactive
                       variants='ghost'
                       className='py-1 px-2 text-xs'
                     >
