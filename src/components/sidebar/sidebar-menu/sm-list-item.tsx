@@ -1,6 +1,6 @@
 import { Button } from '@/components/button'
 
-import { tw } from '@/libs/common'
+import { tw } from '@/utils/common'
 
 import type { LucideIcon } from 'lucide-react'
 

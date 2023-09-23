@@ -1,4 +1,4 @@
-import { tw } from '@/libs/common'
+import { tw } from '@/utils/common'
 
 import { OrbitIcon, StickyNoteIcon } from 'lucide-react'
 import Link from 'next/link'

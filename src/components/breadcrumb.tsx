@@ -1,4 +1,4 @@
-import { tw } from '@/libs/common'
+import { tw } from '@/utils/common'
 
 import { Paper } from './paper'
 

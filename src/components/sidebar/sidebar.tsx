@@ -1,6 +1,6 @@
 import { Paper } from '@/components/paper'
 
-import { tw } from '@/libs/common'
+import { tw } from '@/utils/common'
 
 import { SidebarFooter } from './sidebar-footer'
 import { SidebarMenu } from './sidebar-menu'

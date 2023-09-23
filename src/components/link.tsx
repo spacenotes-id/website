@@ -1,11 +1,14 @@
+import { fallbackElement } from '@/utils/fallback-value'
+
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
-import { Loader2Icon, type LucideIcon } from 'lucide-react'
-import { createElement, forwardRef } from 'react'
+import type { LucideIcon } from 'lucide-react'
+import type { LinkProps } from 'next/link'
+import NextLink from 'next/link'
+import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { P, match } from 'ts-pattern'
 
-const button = cva(['text-sm font-medium rounded border'], {
+const link = cva('text-sm rounded border', {
   variants: {
     variants: {
       unstyled: ['border-none'],
@@ -62,40 +65,37 @@ const button = cva(['text-sm font-medium rounded border'], {
   },
 })
 
-export type ButtonProps = VariantProps<typeof button> &
-  React.ComponentProps<'button'> & {
-    icon?: LucideIcon
-    isLoading?: boolean
-  }
+type ExtendedLinkProps = LinkProps &
+  Omit<React.ComponentPropsWithRef<'a'>, 'href'> & { icon?: LucideIcon }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ icon, variants, interactive, isLoading, ...props }, ref) => {
-    const withIcon = match({ icon, isLoading })
-      .with({ isLoading: true, icon: P._ }, () => (
-        <Loader2Icon className='motion-safe:animate-spin' size='1em' />
-      ))
-      .with({ isLoading: P.nullish.or(false), icon: P.not(P.nullish).select() }, (Icon) => (
-        <Icon size='1em' />
-      ))
-      .otherwise(() => null)
+export type CustomLinkProps = VariantProps<typeof link> & ExtendedLinkProps
 
-    return createElement<ButtonProps, HTMLButtonElement>(
-      'button',
-      {
-        ...props,
-        ref,
-        className: twMerge(
-          button({
-            variants,
-            interactive,
-            className: twMerge(props.className, (icon || isLoading) && 'inline-flex items-center'),
-          }),
-        ),
-      },
-      withIcon,
-      props.children,
-    )
-  },
-)
+export const CustomLink = forwardRef<HTMLAnchorElement, CustomLinkProps>((p, ref) => {
+  const { variants, interactive, icon, ...props } = p
 
-Button.displayName = 'Button'
+  const withIcon = fallbackElement({
+    component: icon,
+    onSucces(Icon) {
+      return <Icon size='1em' />
+    },
+  })
+
+  return (
+    <NextLink
+      ref={ref}
+      {...props}
+      className={twMerge(
+        link({
+          className: twMerge(props.className, icon && 'inline-flex items-center'),
+          interactive,
+          variants,
+        }),
+      )}
+    >
+      {withIcon}
+      {props.children}
+    </NextLink>
+  )
+})
+
+CustomLink.displayName = 'CustomLink'

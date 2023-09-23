@@ -28,4 +28,8 @@
   .gradient-text {
     background: linear-gradient(90deg, #ea580c, #8b5cf6, #2563eb) 0 0 / 400% 100%;
   }
+
+  :is(a, button) {
+    @apply focus-visible:motion-safe:transition focus-visible:outline-none focus-visible:ring focus-visible:ring-primary-300;
+  }
 }

@@ -3,6 +3,7 @@
 import { Button } from '@/components/button'
 
 import { LayoutDashboardIcon } from 'lucide-react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 export default function Home() {
@@ -22,6 +23,21 @@ export default function Home() {
       >
         <span className='ml-2 font-bold'>Go to dashboard</span>
       </Button>
+
+      <div className='flex items-center gap-2.5'>
+        <Link
+          href='/register'
+          className='py-2 px-3 text-sm font-medium mt-4 border rounded text-white bg-base-700'
+        >
+          Register Now
+        </Link>
+        <Link
+          href='/login'
+          className='py-2 px-3 text-sm font-medium mt-4 border rounded text-white bg-base-700'
+        >
+          Login now
+        </Link>
+      </div>
     </main>
   )
 }
