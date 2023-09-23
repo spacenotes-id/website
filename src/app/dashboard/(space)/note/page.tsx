@@ -4,8 +4,9 @@ import { Button } from '@/components/button'
 import { Paper } from '@/components/paper'
 import { Title } from '@/components/title'
 
+import { tw } from '@/utils/common'
+
 import { allNotes } from '@/db/space'
-import { tw } from '@/libs/common'
 
 import { ArchiveIcon, EyeIcon, HeartIcon, PencilIcon, StickyNoteIcon } from 'lucide-react'
 import Link from 'next/link'

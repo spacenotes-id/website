@@ -1,4 +1,4 @@
-import { asyncFetchJSON } from '@/libs/http'
+import { asyncFetchJSON } from '@/utils/http'
 
 export type TBuildQuery = {
   url: string

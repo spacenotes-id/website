@@ -16,7 +16,11 @@ type TAsyncFetchJsonConfig = {
   params?: Record<string, unknown>
 } & (withoutBody | withBody)
 
-export async function asyncFetchJSON<TData>({ url, params, ...config }: TAsyncFetchJsonConfig) {
+export async function asyncFetchJSON<TData, TError = unknown>({
+  url,
+  params,
+  ...config
+}: TAsyncFetchJsonConfig) {
   const actualURL = buildURL({ url, params })
 
   try {
@@ -31,6 +35,6 @@ export async function asyncFetchJSON<TData>({ url, params, ...config }: TAsyncFe
 
     return [res.data, null] as const
   } catch (error) {
-    return [null, error as AxiosError<TData>] as const
+    return [null, error as AxiosError<TError>] as const
   }
 }
