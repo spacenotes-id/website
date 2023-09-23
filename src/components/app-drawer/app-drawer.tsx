@@ -7,6 +7,7 @@ import { Button } from '../button'
 
 import { useAtomValue, useSetAtom } from 'jotai'
 import { FolderIcon, LayoutDashboardIcon, StickyNoteIcon } from 'lucide-react'
+import { signOut } from 'next-auth/react'
 import { Drawer } from 'vaul'
 
 export function AppDrawer() {
@@ -47,6 +48,7 @@ export function AppDrawer() {
             </nav>
 
             <Button
+              onClick={() => signOut()}
               interactive
               variants='black'
               className='text-sm py-2 px-4 w-full justify-center'
